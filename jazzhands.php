@@ -9,6 +9,8 @@
 
     function jazzercise($path = null) {
         echo "Jazzercising...\n";
+        $fileStream = fopen($path, "w") or die("Unable to write file: $path!");
+        echo fgets($fileStream);
         for ($index = 1; $index <= 100; $index++) {
             $data = $index;
 
@@ -20,7 +22,9 @@
                 $data = "JazzHands";
 
             echo "$data\n";
+            fwrite($fileStream, "$data\n");
         }
+        fclose($fileStream);
     }
 
     $directory = $config["buildDirectory"].$config["outputDirectory"];
